@@ -14,7 +14,7 @@ def main():
     rd = [] # 目的寄存器
     shiftAmts = [] # 在移位指令中表示移位
     functionCodes = [] # 功能码
-    regValues = [0] * 32 # 保存32个寄存器中的值 32个寄存器用5个二进制表示
+    regValues = [0] * 32 # 保存32个寄存器 32个寄存器用5个二进制表示
     memoryValues = [0] * 40 # 保存内存值
     count = [0]
     # 输出文件的命名格式
@@ -23,7 +23,6 @@ def main():
 
     # 解析指令
     for instrcution in instructions:
-        currentAddress[0] += 4
         parse_instructions(instrcution,flags,opCodes,rs,rt,rd,shiftAmts,functionCodes)
 
     # test
@@ -41,8 +40,14 @@ def main():
     # breakindex
     breakIndex = find_break(instructions) # break之后是data
 
-    # Reset PC
-    currentAddress[0] = 256
+    # 转汇编代码
+    for instrcution in instructions:
+        i = int((currentAddress[0] / 4) - 64)
+        flag = checkFlag(flags[i])
+        if outputDis(instrcution,currentAddress,flag,opCodes[i],rs[i],rt[i],rd[i],shiftAmts[i],functionCodes[i],i,outputFileName):
+            break;
+
+        currentAddress[0] += 4
 
 
 if __name__ == "__main__":
