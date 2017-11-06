@@ -22,7 +22,19 @@ def parse_instructions(instruction,flags,opCodes,rs,rt,rd,shiftAmt,functionCode)
     rd.append(instruction[16:21])
     shiftAmt.append(instruction[21:26])
     functionCode.append(instruction[26:])
-   
+
+# break之后是数据部分
+def find_break(instructions):
+    count = 0
+    for instruction in instructions:
+        if instruction != "01010100000000000000000000001101":
+            count += 1
+        else:
+            count += 1
+            break
+    return count # 数据段的开头
+
+
 def test():
     filename = input("请输入二进制文件:\n")
     instructions = read_bin(filename)
