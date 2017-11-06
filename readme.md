@@ -12,9 +12,7 @@
 ## 指令描述
 1.Category-1
 
-|区分指令类别-2位|opcode-4位|same as mips instruction|
-| :-------| -------:| :-----:|
-|01 | 操作码|同mips指令|
+![](./img/2.png)
 
 
 | 指令|编码 |
