@@ -10,7 +10,8 @@
     * disassembly.txt:汇编代码
 
 ## 指令描述
-Category-1
+1.Category-1
+
 |区分指令类别-2位|opcode-4位|same as mips instruction|
 | :-------| -------:| :-----:|
 |01 | 操作码|同mips指令|
@@ -32,7 +33,8 @@ Category-1
 |NOP|1011|
 
 
-Category-2
+2.Category-2
+
 ![](./img/1.png)
 
 | 指令|编码 |
