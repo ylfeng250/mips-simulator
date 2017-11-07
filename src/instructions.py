@@ -186,7 +186,7 @@ switch={
     'J':case_J,
     'JR':case_JR,
     'BEQ':case_BEQ,
-    'BLTZ':case_BEQ,
+    'BLTZ':case_BLTZ,
     'BGTZ':case_BGTZ,
     'BREAK':case_BREAK,
     'SW':case_SW,
