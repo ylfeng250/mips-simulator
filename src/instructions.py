@@ -8,7 +8,7 @@ def getRegName(rs):
 def case_J(rs, rt, rd, shiftAmt, functionCode):
     instructionArgs = '#'
     # 需要左移2位
-    instructionArgs = '#' + str(int(rs + rt + rd + shiftAmt + functionCode+"00", base=2))
+    instructionArgs = '#' + str(int(rs + rt + rd + shiftAmt + functionCode, base=2) << 2)
     return instructionArgs
 
 # JR
@@ -88,40 +88,99 @@ def case_NOP(rs, rt, rd, shiftAmt, functionCode):
 
 # ADD
 def case_ADD(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# SUB
 def case_SUB(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# MUL
 def case_MUL(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# AND
 def case_AND(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# OR
 def case_OR(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# XOR
 def case_XOR(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# NOR
 def case_NOR(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# SLT
 def case_SLT(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    rdName = getRegName(rd)
+    instructionArgs = rdName + ', ' + rsName + ', ' + rtName
+    return instructionArgs
 
+# ADDI
 def case_ADDI(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    immediate = rd + shiftAmt + functionCode
+    instructionArgs = rtName + ', ' + rsName + ', #' + str(int(immediate,base=2))
+    return instructionArgs
 
+# ANDI
 def case_ANDI(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    immediate = rd + shiftAmt + functionCode
+    instructionArgs = rtName + ', ' + rsName + ', #' + str(int(immediate,base=2))
+    return instructionArgs
 
+# ORI
 def case_ORI(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    immediate = rd + shiftAmt + functionCode
+    instructionArgs = rtName + ', ' + rsName + ', #' + str(int(immediate,base=2))
+    return instructionArgs
 
+# XORL
 def case_XORI(rs, rt, rd, shiftAmt, functionCode):
-    pass
+    rsName = getRegName(rs)
+    rtName = getRegName(rt)
+    immediate = rd + shiftAmt + functionCode
+    instructionArgs = rtName + ', ' + rsName + ', #' + str(int(immediate,base=2))
+    return instructionArgs
 
 switch={
     'J':case_J,
