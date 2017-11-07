@@ -1,39 +1,39 @@
 # J
 def case_J(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    immediate = rs + rt + rd + shiftAmt + functionCode
-    currentAddress[0] = (int(immediate, 2) << 2)
+    immediate = rs + rt + rd + shiftAmt + functionCode + "00"
+    currentAddress[0] = (int(immediate, 2))
 
 # JR
 def case_JR(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    currentAddress[0] = (int(rs, 2) << 2)
+    currentAddress[0] = (int(rs+"00", 2))
 
 # BEQ if rs = rt then branch
 def case_BEQ(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    offset = rd + shiftAmt + functionCode
+    offset = rd + shiftAmt + functionCode + "00"
     if regValues[int(rs, 2)] == regValues[int(rt, 2)]:
-        currentAddress[0] = currentAddress[0] + int(offset, 2)
+        currentAddress[0] = currentAddress[0] + int(offset, 2) + 4
     else:
         currentAddress[0] = currentAddress[0] + 4 
 
 # BLTZ
 def case_BLTZ(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    offset = rd + shiftAmt + functionCode
+    offset = rd + shiftAmt + functionCode + "00"
     if regValues[int(rs, 2)] < 0:
-        currentAddress[0] = currentAddress[0] + int(offset,2)
+        currentAddress[0] = currentAddress[0] + int(offset,2) + 4
     else:
         currentAddress[0] = currentAddress[0] + 4
 
 # BGTZ
 def case_BGTZ(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    offset = rd + shiftAmt + functionCode
+    offset = rd + shiftAmt + functionCode + "00"
     if regValues[int(rs, 2)] > 0:
-        currentAddress[0] = currentAddress[0] + int(offset,2)
+        currentAddress[0] = currentAddress[0] + int(offset,2) + 4
     else:
         currentAddress[0] = currentAddress[0] + 4
 
 # BREAK
 def case_BREAK(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
-    pass
+    currentAddress[0] += 4
 
 # SW
 def case_SW(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):

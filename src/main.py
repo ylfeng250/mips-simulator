@@ -71,6 +71,7 @@ def main():
     isBreak = False
     while isBreak != True:
         i = int((currentAddress[0] / 4) - 64)
+        # print(i)
         flag = checkFlag(flags[i])
         # Make sure we are only executing instructions before the break
         isBreak = outputSim(dataAddress,currentAddress, flag, opCodes[i], rs[i], rt[i], rd[i], shiftAmts[i],

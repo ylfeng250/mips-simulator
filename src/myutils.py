@@ -89,12 +89,15 @@ def outputSim(dataAddress,currentAddress, flag, opCode, rs, rt, rd, shiftAmt,
     instructionName = opc[opCode][flag]  # 获取指令名称
     instructionArgs = instructions.switch[instructionName](rs, rt, rd, shiftAmt,functionCode) # 获取指令参数
     returnFlag = False # 是否结束标志
-    changeRegValues.switch[instructionName](rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress)
+    
     if instructionName == 'BREAK':
         returnFlag = True
     simOut.write("--------------------" + '\n')
-    simOut.write("Cycle:" + str(count[0] + 1) + ' ' + str(currentAddress[0]) + '\t' + instructionName + ' ' + instructionArgs + '\n')
+    simOut.write("Cycle:" + str(count[0] + 1) + '\t' + str(currentAddress[0]) + '\t' + instructionName + ' ' + instructionArgs + '\n')
     simOut.write('\n')
+
+    changeRegValues.switch[instructionName](rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress)
+    
     simOut.write('Registers: ' + '\n')
     simOut.write('R00: ' + '\t' + str(regValues[0]) + '\t' + str(regValues[1]) + '\t' + str(regValues[2])
                     + '\t' + str(regValues[3]) + '\t' + str(regValues[4]) + '\t' + str(regValues[5]) + '\t'
@@ -110,15 +113,16 @@ def outputSim(dataAddress,currentAddress, flag, opCode, rs, rt, rd, shiftAmt,
                     str(regValues[29]) + '\t' + str(regValues[30]) + '\t' + str(regValues[31]) + '\n')
     simOut.write('\n')
     simOut.write('Data: ' + '\n')
-    simOut.write(str(dataAddress)+': ' + str(memoryValues[0]) + '\t' + str(memoryValues[1]) + '\t' + str(memoryValues[2]) + '\t' +
+    simOut.write(str(dataAddress)+':\t' + str(memoryValues[0]) + '\t' + str(memoryValues[1]) + '\t' + str(memoryValues[2]) + '\t' +
                     str(memoryValues[3]) + '\t' + str(memoryValues[4]) + '\t' + str(memoryValues[5]) + '\t' +
                     str(memoryValues[6]) + '\t' + str(memoryValues[7]) + '\n')
-    simOut.write(str(dataAddress+32)+': ' + str(memoryValues[8]) + '\t' + str(memoryValues[9]) + '\t' + str(memoryValues[10]) + '\t' +
+    simOut.write(str(dataAddress+32)+':\t' + str(memoryValues[8]) + '\t' + str(memoryValues[9]) + '\t' + str(memoryValues[10]) + '\t' +
                     str(memoryValues[11]) + '\t' + str(memoryValues[12]) + '\t' + str(memoryValues[13]) + '\t' +
                     str(memoryValues[14]) + '\t' + str(memoryValues[15]) + '\n')
-    simOut.write(str(dataAddress+64)+': ' + str(memoryValues[16]) + '\t' + str(memoryValues[17]) + '\t' + str(memoryValues[18]) + '\t' +
+    simOut.write(str(dataAddress+64)+':\t' + str(memoryValues[16]) + '\t' + str(memoryValues[17]) + '\t' + str(memoryValues[18]) + '\t' +
                     str(memoryValues[19]) + '\t' + str(memoryValues[20]) + '\t' + str(memoryValues[21]) + '\t' +
                     str(memoryValues[22]) + '\t' + str(memoryValues[23]) + '\n')
+    simOut.write('\n')
 
     count[0] = count[0] + 1
 
