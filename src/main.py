@@ -1,8 +1,10 @@
 from myutils import *
-
+import sys
 def main():
     # 输入文件名称
-    filename = input("please input bin file\nfor example:sample.txt,you just input sample\n")
+    # filename = input("please input bin file\nfor example:sample.txt,you just input sample\n")
+    # 修改输入方式，改成命令行的形式
+    filename = sys.argv[1]
     outputFileName = filename + ".txt"
     currentAddress = [256] # 地址从256开始
     instructions = read_bin(outputFileName) # 获取所有的指令集
@@ -46,9 +48,9 @@ def main():
 
     # breakindex
     dataAddress = currentAddress[0] + 4# 数据段开始的地址
-    print(dataAddress)
+    # print(dataAddress)
     breakIndex = int((dataAddress-256)/4) # break之后是data
-    print(breakIndex)
+    # print(breakIndex)
     # 打印数据
     dataInstructions = instructions[breakIndex:] # 获取数据部分
     i = 0
@@ -56,7 +58,7 @@ def main():
         bits = 32
         currentAddress[0] = currentAddress[0] + 4
         j = int((currentAddress[0] / 4) - 64)
-        print(flags[j][0:1])
+        # print(flags[j][0:1])
         if flags[j][0:1] == '0':
             disOut.write(data + '\t' + str(currentAddress[0]) + '\t' + str(int(data, 2)) + '\n')
             memoryValues[i] = int(data, 2)

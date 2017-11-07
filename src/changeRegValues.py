@@ -38,8 +38,8 @@ def case_BREAK(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddr
 # SW
 def case_SW(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
     offset = rd + shiftAmt + functionCode
-    print(int((regValues[int(rs, 2)] + int(offset, 2))
-                     / 4) - int(dataAddress/4))
+    # print(int((regValues[int(rs, 2)] + int(offset, 2))
+    #                  / 4) - int(dataAddress/4))
     memoryValues[int((regValues[int(rs, 2)] + int(offset, 2))
                      / 4) - int(dataAddress/4)] = regValues[int(rt, 2)]
     currentAddress[0] = currentAddress[0] + 4
@@ -48,8 +48,8 @@ def case_SW(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress
 # LW rt = memory[base+offset]
 def case_LW(rs, rt, rd, shiftAmt,functionCode,regValues,memoryValues,dataAddress,currentAddress):
     offset = rd + shiftAmt + functionCode
-    print(int((regValues[int(rs, 2)] + int(offset, 2))
-                     / 4) - int(dataAddress/4))
+    # print(int((regValues[int(rs, 2)] + int(offset, 2))
+    #                  / 4) - int(dataAddress/4))
     regValues[int(rt, 2)] = memoryValues[int((regValues[int(rs, 2)] + int(offset, 2))
                      / 4) - int(dataAddress/4)]
     currentAddress[0] = currentAddress[0] + 4
