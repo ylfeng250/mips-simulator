@@ -72,9 +72,7 @@ def outputDis(instruction, currentAddress, flag, opCode, rs, rt, rd, shiftAmt,
     instructionName = ""  # 指令名
     instructionArgs = ""  # 指令参数
     instructionName = opc[opCode][flag]  # 获取指令名称
-
-    instructionArgs = switch[instructionName](rs, rt, rd, shiftAmt,
-                                              functionCode)
+    instructionArgs = switch[instructionName](rs, rt, rd, shiftAmt,functionCode)
     print(instructionArgs)
 
     return False
