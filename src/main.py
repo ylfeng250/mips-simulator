@@ -59,23 +59,25 @@ def main():
         currentAddress[0] = currentAddress[0] + 4
         j = int((currentAddress[0] / 4) - 64)
         # print(flags[j][0:1])
-        if flags[j][0:1] == '0':
+        # 通过补码计算数值
+        if flags[j][0:1] == '0': # 正
             disOut.write(data + '\t' + str(currentAddress[0]) + '\t' + str(int(data, 2)) + '\n')
             memoryValues[i] = int(data, 2)
-        else:
+        else: # 负
             disOut.write(data + '\t' + str(currentAddress[0]) + '\t' + str(int(data, 2) - (1<<bits)) + '\n')
             memoryValues[i] = int(data, 2) - (1<<bits)
         i = i + 1
     
+    # 开始仿真，地址初始化为256
     currentAddress[0] = 256
     
-    # 执行语句
+    # 执行语句 输出仿真文件
     isBreak = False
     while isBreak != True:
         i = int((currentAddress[0] / 4) - 64)
         # print(i)
         flag = checkFlag(flags[i])
-        # Make sure we are only executing instructions before the break
+        # 确保我们只执行break之前的指令
         isBreak = outputSim(dataAddress,currentAddress, flag, opCodes[i], rs[i], rt[i], rd[i], shiftAmts[i],
                                      functionCodes[i], regValues, memoryValues, count, simOut)
         if isBreak:

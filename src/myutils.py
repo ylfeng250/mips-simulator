@@ -5,10 +5,12 @@
 -find_break 返回代码段的结尾即数据段的起点
 -checkFlag 检测输入什么类型的指令
 -outputDis 输出dis文件
--outputSim 输出Sim
+-outputSim 输出Sim文件
 """
 import instructions
 import changeRegValues
+
+# 根据flag判断是第一类操作还是第二类操作，然后映射操作符
 opc = {
     "0000": ['J', 'ADD'],
     "0001": ['JR', 'SUB'],
@@ -78,7 +80,7 @@ def outputDis(instruction, currentAddress, flag, opCode, rs, rt, rd, shiftAmt,
     instructionArgs = instructions.switch[instructionName](rs, rt, rd, shiftAmt,functionCode) # 获取指令参数
     if instructionName != 'BREAK':
         disOut.write( instruction + '\t' + str(currentAddress[0]) + '\t' + instructionName+ ' ' + str(instructionArgs) + '\n')
-    else:
+    else:# break指令没有操作数
         disOut.write( instruction + '\t' + str(currentAddress[0]) + '\t' + instructionName + '\n')
     # Check if instruction is a break instruction
     if instructionName == 'BREAK':

@@ -7,7 +7,6 @@ def getRegName(rs):
 # J
 def case_J(rs, rt, rd, shiftAmt, functionCode):
     instructionArgs = '#'
-    # 需要左移2位
     instructionArgs = '#' + str(int(rs + rt + rd + shiftAmt + functionCode, base=2) << 2)
     return instructionArgs
 
